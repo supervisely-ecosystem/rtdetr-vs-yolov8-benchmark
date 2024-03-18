@@ -1,0 +1,55 @@
+
+Бенчмарки (сранвить с yolo):
+- mAP на разных датасетах
+- FPS
+- Обучаемость (compute, time, memory, скорость сходимости)
+- Data Efficiency (количество данных для обучения)
+- hyper-parameter sensitivity (сложность настройки)
+
+Bounds:
+    Constant memory and time
+    Constant iterations
+    Constant FPS
+
+Roadmap:
+1. Выбрать модель йоло (v8)
+2. Замерить FPS YOLOv8 и RT-DETR
+    - Как? w/ w/o NMS
+    - Какая модель: все
+    - Картинка 640х640, 1280х1280. Сколько памяти жрет
+    - Какие данные
+    - ! убедиться что гпу не занята при бенчмарке
+3. Datasets. Выбрать датасеты и скачать
+    - Критерии датасетов:
+    - Кол-во объектов на картинке
+    - Кол-во классов
+    - Семантическая сложность датасета (насколько легко обнаржить и определить класс)
+    - Домен (common, agriculture, industry)
+    - COCO2017 5k, Stanford Cars, Plant Counting, deepNIR
+4. Качество: mAP. YOLOv8 vs RT-DETR
+    - на разных данных по кол-ву объектов и сложности
+    - запредиктить на всех данных по всем моделям
+    - посчитать метрики (mAP и другие)
+    - Сравнить YOLOv8 и RT-DETR
+5. Обучаемость
+    - bound and unbound tests
+    - Скорость сходимости
+    - Качество модели
+    - Data Efficiency test
+    - Кол-во классов
+    - hyper-parameter sensitivity (сложность настройки)
+
+
+Benchmark Framework:
+У нас есть класс модели и метод predict.
+Добавляем внутрь класса profilers: pre-process, forward, post-process
+
+Качество предиктов:
+- Сравнить модели по предиктам (глазами)
+
+
+1. Plot learning curves (model performance vs. dataset size)
+- dataset: deepNIR
+- train size: 800 + 122
+2. Impact of Augmentations.
+3. Impact of Regularization (weight decay).
