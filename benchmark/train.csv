@@ -1,0 +1,5 @@
+Dataset,Model,mAP
+Plant Detection and Counting,YOLOv8-M,0.6698
+Plant Detection and Counting,RT-DETR r34,0.9265
+deepNIR (wheat),YOLOv8-M,0.9002
+deepNIR (wheat),RT-DETR r34,0.9237
